@@ -26,6 +26,7 @@ import { BookModule } from './book/book.module';
       entities: ['dist/**/*.entity.js'], // I'll go ahead and answer this with a rehash of my answer on the StackOverflow question you linked: you are trying to load Typescript files while running JavaScript, which will fail 100% of the time. Your entities array of your TypeOrmModule.forRoot() configuration is looking for js and ts files in the src directory, which should be only where your ts files live. Your js files should exist solely in dist (at least the ones created from compilation), and you shouldn't really look for the ts files in the first place. If you want to be able to load ts or js files, you should use __dirname instead of src. In the end though, as you should be using node to run the server, and so long as you aren't using ts-node for development, you should replace the line completely with dist/**/*.entity.js
       synchronize: true,
     }),
+    BookModule,
   ],
   controllers: [],
   providers: [AppResolver],

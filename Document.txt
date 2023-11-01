@@ -1,0 +1,61 @@
+# To setup
+- First create a postgres database with name "book_db" in docker. See app.module for configuration configs
+- Run the app then hit http://localhost:5000/graphql in browser to run graphql queries
+
+# Graphql queries
+(You can click on schema tab to view all the queries and types. This is at right side vertically)
+1. To get all the books:
+=> {
+  books{
+    id,
+    title,
+    price
+  }
+}
+
+2. To get book by id:
+=> {
+  bookById(bookId:3){
+    id
+    title
+  }
+}
+
+3. To add a new book:
+- first write the mutation query
+// here you can give mutation any name I have given it AddBook name. ! denotes required field
+=> mutation AddBook($addBookArgs: AddBookArgs!){
+  addBook(addBookArgs:$addBookArgs)
+}
+- then give the value to query variables(click on Query Variables tab at below)
+=> {
+  "addBookArgs": {
+    "title":"Robin Hood 2",
+    "price":700
+  }
+}
+
+4. Update a book:
+- mutation query
+=> mutation UpdateBook($updateBookArgs: UpdateBookArgs!){
+  updateBook(updateBookArgs:$updateBookArgs)
+}
+- value of query variables
+=> {
+  "updateBookArgs": {
+    "id":2,
+    "title":"Robin Hood Updated",
+    "price":7000
+  }
+}
+
+5. Delete a book:
+- mutation query 
+=> mutation DeleteBook($bookId:Int!){
+  deleteBook(bookId:$bookId)
+}
+-  query variables value 
+=> {
+  "bookId": 3
+}
+
