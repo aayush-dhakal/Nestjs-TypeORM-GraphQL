@@ -6,6 +6,7 @@ import { Query } from '@nestjs/graphql';
 import { AddBookArgs } from './args/addBook.args';
 import { UpdateBookArgs } from './args/updatebook.args';
 
+//  The @Resolver((of) => Book) annotation in a GraphQL resolver file indicates that the code or resolver is related to handling queries or mutations associated with the Book schema type. Way to organize the resolver files.
 @Resolver((of) => Book)
 export class BookResolver {
   constructor(private readonly bookService: BookService) {}
